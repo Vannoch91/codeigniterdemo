@@ -36,6 +36,9 @@ class Register extends MY_Controller {
 	}
 	public function validation()
 	{
+		// Please specify an SMTP Number 25 and 8889 are valid SMTP Ports.
+		ini_set("smtp_port",587);
+
 		$this->form_validation->set_rules('email','Email Address','required|trim|valid_email|is_unique[users.email]');
 		$this->form_validation->set_rules('password','Password','required');
 		$this->form_validation->set_rules('confirm','Confirm Password','required|matches[password]');
@@ -58,8 +61,8 @@ class Register extends MY_Controller {
 			
 				$message ="This is the message to verify for user email:".$email;
 				$config = array(
-					'protocol' => 'ssmtp',
-					'smtp_host' => 'ssl://smtp.gmail.com',
+					'protocol' => 'smtp',
+					'smtp_host' => 'smtp.gmail.com',
 					'smtp_port' => 587,
 					'smtp_user' => 'v.vannochit@gmail.com',
 					'smtp_pass' => 'vannoch093789150',
@@ -68,19 +71,19 @@ class Register extends MY_Controller {
 
 				// $this->load->library('email',$config);
 				$this->email->initialize($config);
-				$this->email->from('info@bongnoch.com','sender_name');
+				$this->email->from('v.vannochit@gmail.com','Bong Noch HR');
 				$this->email->to($email);
 				$this->email->subject("Verify email to login");
 				$this->email->message($message);
 				$this->email->send();
 				var_dump($this->email);
 				
-				// if($this->email->send())
-				// {	
-						
-				// 	$this->session->set_flashdata('message','pls check your email inbox');
-				// 	redirect('register');
-				// }
+				if($this->email->send())
+				{	
+					echo "Hello";
+					$this->session->set_flashdata('message','pls check your email inbox');
+					redirect('register/index');
+				}
 			}
 		}else
 		{
