@@ -52,3 +52,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'dashboard';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+
+$route['category'] = "category/index";
+$route['category/(:num)'] = "category/show/$1";
+// $route['itemCRUDCreate']['post'] = "itemCRUD/store";
+$route['category/(:any)'] = "category/edit/$1";
+$route['itemCRUDUpdate/(:any)']['put'] = "category/update/$1";
+// $route['itemCRUDDelete/(:any)']['delete'] = "itemCRUD/delete/$1";

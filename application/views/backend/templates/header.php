@@ -57,8 +57,21 @@
                     <li><a href="#">Page 3</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                     <?php
+                     if(isset($this->session->userdata['logged_in'])) { ?>
+                    <li>
+                        <a href="#"><span class="glyphicon glyphicon-user"></span> 
+                            <?php
+                                $info = $this->session->userdata['logged_in'];
+                                    echo $info['id'].'---'.$info['email'];
+                                
+                            ?>
+                        </a>
+                    </li>
+                    <?php } ?>
+                    <?php if(isset($this->session->userdata['logged_in'])){ ?>
+                    <li><a href="<?php echo base_url();?>Login/logout"><span class="glyphicon glyphicon-log-in"></span> Sigout</a></li>
+                    <?php } ?>
                 </ul>
             </div>
         </div>

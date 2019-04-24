@@ -28,4 +28,6 @@ protected function render($the_view = NULL, $template = 'layout_master')
 	}
 }
 
+
+
 }

@@ -12,4 +12,11 @@ class MY_Controller extends CI_Controller {
 		$this->load->view($this->page,$this->template);
 	}
 
+	protected function checkAuth()
+	{
+		if(!isset($this->session->userdata['logged_in'])){
+			redirect('login/index');
+		}
+	}
+
 }

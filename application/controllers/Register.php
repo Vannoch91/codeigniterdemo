@@ -37,7 +37,7 @@ class Register extends MY_Controller {
 	public function validation()
 	{
 		// Please specify an SMTP Number 25 and 8889 are valid SMTP Ports.
-		ini_set("smtp_port",587);
+		
 
 		$this->form_validation->set_rules('email','Email Address','required|trim|valid_email|is_unique[users.email]');
 		$this->form_validation->set_rules('password','Password','required');
@@ -54,9 +54,9 @@ class Register extends MY_Controller {
 					'created_at' => $created_at,
 					'email_confirmationcode' => $verification_key
 				);
-			// $id=$this->RegisterModel->insertData($data);
-			$id=99;
-			if($id>0)
+			$id=$this->RegisterModel->insertData($data);
+		
+			/*if($id>0)
 			{
 			
 				$message ="This is the message to verify for user email:".$email;
@@ -69,7 +69,7 @@ class Register extends MY_Controller {
 					'wordwrap' => true
 					);
 
-				// $this->load->library('email',$config);
+				$this->load->library('email',$config);
 				$this->email->initialize($config);
 				$this->email->from('v.vannochit@gmail.com','Bong Noch HR');
 				$this->email->to($email);
@@ -84,7 +84,7 @@ class Register extends MY_Controller {
 					$this->session->set_flashdata('message','pls check your email inbox');
 					redirect('register/index');
 				}
-			}
+			}*/
 		}else
 		{
 			$this->index();
