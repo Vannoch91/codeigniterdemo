@@ -27,41 +27,38 @@ $(document).ready(function() {
                      var id = $(this).val()
                    
                    $.confirm({
-    title: 'Confirm!',
-    content: 'Simple confirm!',
-    buttons: {
-        confirm: function () {
-            $.alert('Confirmed!');
-        },
-        cancel: function () {
-            $.alert('Canceled!');
-        },
-        somethingElse: {
-            text: 'Something else',
-            btnClass: 'btn-blue',
-            keys: ['enter', 'shift'],
-            action: function(){
-                $.alert('Something else?');
-            }
-        }
-    }
-});
+                    title: 'Confirm!',
+                    content: 'Do you really want Delete the record '+ id,
+                    buttons: {
+                        confirm: function () {
+                             $.ajax({
+                                url: rooturl + "/category/delete/"+id,
+                                type: 'POST',
+                                data: {
+                                    id: id
+                                },
+                                success: function(res) {
+                                    var obj = JSON.parse(res);
+                                    if(obj.status== true && obj.status!==''){
+                                        swal("Good job!", "You clicked the button!", "success",{ buttons: false,
+                                        timer: 3000,});
+                                        
+                                    }
+                                },                             
+                                error: function() {
+                                    console.log('error data');
+                                }
+                            });
+                        },
+                        cancel: function () {
+                            
+                        }
+                    }
 
-                   
-                        $.ajax({
-                            url: rooturl + "/category/delete/"+id,
-                            type: 'POST',
-                            data: {
-                                id: id
-                            },
-                            success: function(res) {
-                                var obj = JSON.parse(res);
-                                console.log(obj.status);
-                            },                             
-                            error: function() {
-                                console.log('error data');
-                            }
-                        });
+                });
+
+
+                       
 
                      
                      event.preventDefault();

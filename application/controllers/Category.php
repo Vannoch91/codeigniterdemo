@@ -101,7 +101,7 @@ class Category extends MY_Controller {
    public function delete($id)
    {
        // $item = $this->CategoryModel->delete_item($id);
-       $this->session->set_flashdata('updated', 'Deleted Successfully...');
+       // $this->session->set_flashdata('updated', 'Deleted Successfully...');
        // redirect(base_url('category'));
        $arr=array(
        		"status" => true,
