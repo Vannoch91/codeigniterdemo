@@ -56,7 +56,8 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['category'] = "category/index";
 $route['category/(:num)'] = "category/show/$1";
-// $route['itemCRUDCreate']['post'] = "itemCRUD/store";
-$route['category/(:any)'] = "category/edit/$1";
+$route['itemCRUDCreate']['post'] = "category/store";
+
+$route['itemCRUDEdit/(:any)'] = "category/edit/$1";
 $route['itemCRUDUpdate/(:any)']['put'] = "category/update/$1";
-// $route['itemCRUDDelete/(:any)']['delete'] = "itemCRUD/delete/$1";
+$route['itemCRUDDelete/(:any)']['delete'] = "category/delete/$1";

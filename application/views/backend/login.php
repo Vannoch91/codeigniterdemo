@@ -112,13 +112,7 @@
 </style>
 
 <script type="text/javascript">
-    $(document).ready (function(){            
-         
-                $("#showalert").fadeTo(2000, 500).slideUp(500, function(){
-               $("#showalert").slideUp(500);
-                });   
-      
-    });
+  
 </script>
 <div class="container" style="width:100%;margin:0px;padding:0px;">	
 	<div class="col-lg-4 col-lg-offset-4">
@@ -129,7 +123,7 @@
             if($this->session->flashdata('login_message'))
             {
             	echo '
-            	<div class="alert alert-danger" id="showalert">
+            	<div class="alert alert-danger showalert" id="showalert">
             		'.$this->session->flashdata("login_message").'
             	</div>
             	';

@@ -21,7 +21,7 @@
 
 
             if ($this->session->flashdata('errors')){
-                echo '<div class="alert alert-danger">';
+                echo '<div class="alert alert-danger" id="showalert">';
                 echo $this->session->flashdata('errors');
                 echo "</div>";
             }

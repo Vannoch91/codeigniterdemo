@@ -1,3 +1,4 @@
+var rooturl ="http://localhost/CI";
 $(document).ready(function() {
     jQuery(document).ready(function() {
         jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
@@ -14,6 +15,63 @@ $(document).ready(function() {
 });
 
 ;
+
+  $(document).ready (function(){            
+         
+                $("#showalert").fadeTo(2000, 500).slideUp(500, function(){
+                $("#showalert").slideUp(500);
+                });  
+
+                
+                 $(".btnDelete").click(function(event){   
+                     var id = $(this).val()
+                   
+                   $.confirm({
+    title: 'Confirm!',
+    content: 'Simple confirm!',
+    buttons: {
+        confirm: function () {
+            $.alert('Confirmed!');
+        },
+        cancel: function () {
+            $.alert('Canceled!');
+        },
+        somethingElse: {
+            text: 'Something else',
+            btnClass: 'btn-blue',
+            keys: ['enter', 'shift'],
+            action: function(){
+                $.alert('Something else?');
+            }
+        }
+    }
+});
+
+                   
+                        $.ajax({
+                            url: rooturl + "/category/delete/"+id,
+                            type: 'POST',
+                            data: {
+                                id: id
+                            },
+                            success: function(res) {
+                                var obj = JSON.parse(res);
+                                console.log(obj.status);
+                            },                             
+                            error: function() {
+                                console.log('error data');
+                            }
+                        });
+
+                     
+                     event.preventDefault();
+                  })
+
+
+      
+    });
+
+
 (function($, window, document, undefined) {
     var pluginName = "jqueryAccordionMenu";
     var defaults = {
